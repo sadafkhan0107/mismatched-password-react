@@ -1,23 +1,25 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
 
 function App() {
+  const[enterPassword, setEnterPassword] = useState("");
+  const[confirmPassword, setConfirmPassword] = useState("");
+  const handleEnterPasswordChange = (e) =>{
+    setEnterPassword(e.target.value)
+  }
+  const handleConfirmPasswordChange = (e) =>{
+    setConfirmPassword(e.target.value)
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Mismatched Password</h1>
+
+       <label>Enter Password: <input value={enterPassword} placeholder='Enter Password' onChange={handleEnterPasswordChange}/> <br/> </label>
+
+
+       <label>Confirm Password: <input value={confirmPassword} placeholder='Confirm Password' onChange={handleConfirmPasswordChange}/> <br/> </label>
+
+       <button disabled={!((enterPassword.length > 0 && confirmPassword.length > 0) && (enterPassword === confirmPassword))}> Submit </button>
     </div>
   );
 }
